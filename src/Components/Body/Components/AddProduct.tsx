@@ -86,6 +86,7 @@ function AddProduct() {
       <div className="col-mb-3 row">
         <label className="col-sm-2">Type Switcher</label>
         <select
+          id={"productType"}
           className="col-sm-3"
           onChange={(event) => {
             Object.entries(components).map(([key, value]) => {

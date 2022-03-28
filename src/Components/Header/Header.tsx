@@ -12,7 +12,7 @@ function Header() {
       <div className="container-fluid col-sm-3">
         <Routes>
           <Route path="/" element={<ProductListHeader />}></Route>
-          <Route path="/addproduct" element={<AddProductListHeader />}></Route>
+          <Route path="/add-product" element={<AddProductListHeader />}></Route>
         </Routes>
       </div>
     </Style.Container>

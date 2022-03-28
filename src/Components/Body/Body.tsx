@@ -9,7 +9,7 @@ function Body() {
     <Style.Container>
       <Routes>
         <Route path="/" element={<ProductList />} />
-        <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/add-product" element={<AddProduct />} />
       </Routes>
     </Style.Container>
   );

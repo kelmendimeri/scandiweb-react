@@ -25,7 +25,7 @@ function ProductListHeader() {
   }
   return (
     <Style.Container id={"addproductheaders"}>
-      <Link to={"/addproduct"}>
+      <Link to={"/add-product"}>
         <Button title="Add Product" />
       </Link>
       <Button
