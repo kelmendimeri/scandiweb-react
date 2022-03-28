@@ -11,7 +11,7 @@ export default Button;
 const Style = {
   Button: styled.button`
     background: none;
-    width: 100px;
+    width: 130px;
     white-space: nowrap;
     height: auto;
     box-shadow: 3px 5px;

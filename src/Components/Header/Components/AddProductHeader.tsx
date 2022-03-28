@@ -12,7 +12,7 @@ function AddProductList() {
   function postProduct(data: any) {
     axios({
       method: "POST",
-      url: `http://localhost:8080/scandiwebPHP/insert/${addCateogry}.php`,
+      url: `https://juniortestkelmendimeri.000webhostapp.com/scandiwebPHP/insert/${addCateogry}.php`,
       data: data,
     }).then(() => {
       return true;

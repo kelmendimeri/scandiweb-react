@@ -6,7 +6,7 @@ import ProductList from "./Components/ProductlList";
 
 function Body() {
   return (
-    <Style.Container>
+    <Style.Container className="container">
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/add-product" element={<AddProduct />} />
@@ -19,7 +19,7 @@ export default Body;
 
 const Style = {
   Container: styled.main`
-    padding-top: 100px;
-    padding-bottom: 25px;
+    // padding-top: 70px;
+    // padding-bottom: 50px;
   `,
 };

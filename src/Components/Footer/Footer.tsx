@@ -4,12 +4,12 @@ function Footer() {
     <footer
       className="footer col-12 fixed-bottom"
       style={{
-        padding: "20px 0",
+        height: "50px",
         textAlign: "center",
         background: "white",
       }}
     >
-      @Scandiweb Test assignment
+      Scandiweb Test assignment
     </footer>
   );
 }

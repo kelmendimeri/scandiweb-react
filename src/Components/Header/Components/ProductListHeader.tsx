@@ -3,7 +3,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { productSelector } from "../../../services/productSlice";
+import { fetchProduct, productSelector } from "../../../services/productSlice";
 import Button from "./Button";
 
 function ProductListHeader() {
@@ -17,7 +17,7 @@ function ProductListHeader() {
   function removeProduct(idx: number) {
     axios({
       method: "DELETE",
-      url: "http://localhost:8080/scandiwebPHP/delete/MassDelete.php",
+      url: "https://juniortestkelmendimeri.000webhostapp.com/scandiwebPHP/delete/MassDelete.php",
       data: { id: idx },
     }).then(() => {
       return true;
@@ -26,20 +26,20 @@ function ProductListHeader() {
   return (
     <Style.Container id={"addproductheaders"}>
       <Link to={"/add-product"}>
-        <Button title="Add Product" />
+        <Button title="ADD" />
       </Link>
       <Button
-        title={"Mass Delete"}
+        title={"MASS DELETE"}
         onClick={() => {
-          alert("Check an prdouct item before clicking delete button");
-          selectedData.length > 0 &&
-            selectedData.map((item: number) => {
-              removeProduct(item);
-            });
+          selectedData.length > 0
+            ? selectedData.map((item: number) => {
+                removeProduct(item);
+                window.location.reload();
+              })
+            : alert("Check an prdouct item before clicking delete button");
+          fetchProduct();
         }}
-      >
-        Mass Delete
-      </Button>
+      />
     </Style.Container>
   );
 }

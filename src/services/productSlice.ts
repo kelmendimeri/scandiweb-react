@@ -71,7 +71,7 @@ export const productSelector = (state: { product: any }) => state.product;
 export default productSlice.reducer;
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/scandiwebPHP/",
+  baseURL: "https://juniortestkelmendimeri.000webhostapp.com/scandiwebPHP/",
 });
 
 // fetch all products

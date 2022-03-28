@@ -15,7 +15,7 @@ function ProductList() {
     dispatch(fetchProduct());
   }, [dispatch]);
   const { loading, error, products } = useSelector(productSelector);
-
+  console.log(products);
   return (
     <Style.Container id="ProductList">
       <Style.Items>
@@ -38,15 +38,11 @@ function ProductList() {
             index: number
           ) => {
             return (
-              <Style.Item
-                key={index}
-                onClick={() => {
-                  // dispatch(deleteProduct(product.ID));
-                }}
-              >
+              <Style.Item key={index}>
                 <Style.CheckBox>
                   <input
                     type={"checkbox"}
+                    className={".delete-checkbox"}
                     id={`checkbox${product.ID}`}
                     onChange={(e: any) => {
                       dispatch(deleteProduct(product.ID));
@@ -80,7 +76,9 @@ export default ProductList;
 
 const Style = {
   Container: styled.div`
+    padding-top: 100px;
     margin: 0 10px;
+    padding-bottom: 70px;
   `,
 
   Items: styled.div`

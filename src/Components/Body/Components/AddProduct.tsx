@@ -12,9 +12,9 @@ function AddProduct() {
   const dispatch = useDispatch();
   const [myComp, setMyComp] = useState("");
   const components = {
-    AddBook: "Book",
-    AddDvd: "Dvd",
-    AddFurniture: "Furniture",
+    Book: "Book",
+    DVD: "Dvd",
+    Furniture: "Furniture",
   };
   const AsyncPage = loadable(
     (props: any) => import(`./Category/${props.page}`)
@@ -22,7 +22,11 @@ function AddProduct() {
   const [myProduct, setMyProduct] = useState<any>({});
 
   return (
-    <form className="col-sm-6" id="product_form">
+    <form
+      className="col-sm-6"
+      id="product_form"
+      style={{ paddingTop: "100px", margin: "0 10px", paddingBottom: "70px" }}
+    >
       <div className="form-group row mb-2">
         <label htmlFor="SKU" className="col-sm-2  col-form-label">
           SKU
@@ -59,7 +63,7 @@ function AddProduct() {
           />
         </div>
       </div>
-      <div className="form-group row mb-2">
+      <div className="#product_form form-group row mb-2">
         <label htmlFor="Price" className="col-sm-2 col-form-label">
           Price
         </label>
@@ -86,7 +90,7 @@ function AddProduct() {
       <div className="col-mb-3 row">
         <label className="col-sm-2">Type Switcher</label>
         <select
-          id={"productType"}
+          id={"#productType"}
           className="col-sm-3"
           onChange={(event) => {
             Object.entries(components).map(([key, value]) => {
