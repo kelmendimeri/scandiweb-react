@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
   const dispatch = useDispatch();
+
   const [myComp, setMyComp] = useState("");
   const components = {
     Book: "Book",
@@ -25,8 +26,7 @@ function AddProduct() {
 
   return (
     <form
-      className="col-sm-6  needs-validation"
-      noValidate
+      className="col-6"
       id="product_form"
       style={{ paddingTop: "100px", margin: "0 10px", paddingBottom: "70px" }}
     >
@@ -46,7 +46,6 @@ function AddProduct() {
               dispatch(addProduct({ [e.target.name]: e.target.value }));
             }}
           />
-          <div className="invalid-feedback">Please provide a valid city.</div>
         </div>
       </div>
       <div className="form-group row mb-2">
@@ -96,6 +95,7 @@ function AddProduct() {
         <select
           id={"productType"}
           className="col-sm-3"
+          required
           onChange={(event) => {
             Object.entries(components).map(([key, value]) => {
               return key === event.target.value && setMyComp(value);

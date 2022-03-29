@@ -10,30 +10,24 @@ import Button from "./Button";
 function AddProductList() {
   const { addCateogry } = useSelector(productSelector);
   const { addProduct } = useSelector(productSelector);
-  function postProduct(data: any) {
+  const navigate = useNavigate();
+  function postProduct(data: any[]) {
     axios({
       method: "POST",
       url: `http://localhost:8080/scandiwebPHP/insert/${addCateogry}.php`,
       data: data,
-    }).then(() => {
-      return true;
     });
   }
-
   return (
     <Style.Container id={"addproductheaders"}>
-      <Link to={"/"}>
-        <Button
-          form={"product_form"}
-          title="Save"
-          onClick={(e: any) => {
-            // e.preventDefault();
-            postProduct(addProduct);
-            fetchProduct();
-            // navigate("/");
-          }}
-        />
-      </Link>
+      <Button
+        form={"product_form"}
+        title="Save"
+        onClick={(e: any) => {
+          postProduct(addProduct);
+        }}
+      />
+
       <Link to={"/"}>
         <Button title="Cancel" />
       </Link>
