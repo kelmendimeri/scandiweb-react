@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { fetchProduct, productSelector } from "../../../services/productSlice";
+
 import Button from "./Button";
 
 function AddProductList() {
@@ -12,22 +13,24 @@ function AddProductList() {
   function postProduct(data: any) {
     axios({
       method: "POST",
-      url: `https://juniortestkelmendimeri.000webhostapp.com/scandiwebPHP/insert/${addCateogry}.php`,
+      url: `http://localhost:8080/scandiwebPHP/insert/${addCateogry}.php`,
       data: data,
     }).then(() => {
       return true;
     });
   }
-  const navigate = useNavigate();
+
   return (
     <Style.Container id={"addproductheaders"}>
       <Link to={"/"}>
         <Button
+          form={"product_form"}
           title="Save"
-          onClick={() => {
+          onClick={(e: any) => {
+            // e.preventDefault();
             postProduct(addProduct);
             fetchProduct();
-            navigate("/");
+            // navigate("/");
           }}
         />
       </Link>

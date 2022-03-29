@@ -6,7 +6,9 @@ import {
   addProduct,
   addCateogry,
   productSelector,
+  fetchProduct,
 } from "../../../services/productSlice";
+import { useNavigate } from "react-router-dom";
 
 function AddProduct() {
   const dispatch = useDispatch();
@@ -23,7 +25,8 @@ function AddProduct() {
 
   return (
     <form
-      className="col-sm-6"
+      className="col-sm-6  needs-validation"
+      noValidate
       id="product_form"
       style={{ paddingTop: "100px", margin: "0 10px", paddingBottom: "70px" }}
     >
@@ -38,11 +41,12 @@ function AddProduct() {
             className="form-control"
             id="sku"
             placeholder="SKU"
-            required
+            required={true}
             onChange={(e: any) => {
               dispatch(addProduct({ [e.target.name]: e.target.value }));
             }}
           />
+          <div className="invalid-feedback">Please provide a valid city.</div>
         </div>
       </div>
       <div className="form-group row mb-2">
@@ -90,7 +94,7 @@ function AddProduct() {
       <div className="col-mb-3 row">
         <label className="col-sm-2">Type Switcher</label>
         <select
-          id={"#productType"}
+          id={"productType"}
           className="col-sm-3"
           onChange={(event) => {
             Object.entries(components).map(([key, value]) => {

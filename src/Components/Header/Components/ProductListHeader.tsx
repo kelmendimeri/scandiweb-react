@@ -1,9 +1,13 @@
 import axios from "axios";
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { fetchProduct, productSelector } from "../../../services/productSlice";
+import {
+  api,
+  fetchProduct,
+  productSelector,
+} from "../../../services/productSlice";
 import Button from "./Button";
 
 function ProductListHeader() {
@@ -13,13 +17,15 @@ function ProductListHeader() {
     deleteProduct.map((item: any) => {
       selectedData.push(item);
     });
-
+  const navigate = useNavigate();
   function removeProduct(idx: number) {
     axios({
+      url: `http://localhost:8080/scandiwebPHP/delete/MassDelete.php`,
       method: "DELETE",
-      url: "https://juniortestkelmendimeri.000webhostapp.com/scandiwebPHP/delete/MassDelete.php",
       data: { id: idx },
     }).then(() => {
+      fetchProduct();
+      navigate("/");
       return true;
     });
   }
