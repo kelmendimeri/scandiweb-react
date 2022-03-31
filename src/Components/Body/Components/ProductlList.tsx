@@ -7,6 +7,7 @@ import {
 } from "../../../services/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import $ from "jquery";
 
 function ProductList() {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ function ProductList() {
     dispatch(setLoading());
     dispatch(fetchProduct());
   }, [dispatch]);
+
   const { loading, error, products } = useSelector(productSelector);
   console.log(products);
   return (
@@ -46,6 +48,13 @@ function ProductList() {
                     id={`checkbox${product.ID}`}
                     onChange={(e: any) => {
                       dispatch(deleteProduct(product.ID));
+                      $(`#checkbox${product.ID}`).prop("checked")
+                        ? $(`#checkbox${product.ID}`).addClass(
+                            "delete-checkbox"
+                          )
+                        : $(`#checkbox${product.ID}`).removeClass(
+                            "delete-checkbox"
+                          );
                     }}
                   />
                 </Style.CheckBox>
@@ -93,7 +102,7 @@ const Style = {
     border: 2px solid black;
     margin: 0;
     padding: 5px;
-
+    height: 180px;
     align-items: center;
     justify-content: center;
   `,
