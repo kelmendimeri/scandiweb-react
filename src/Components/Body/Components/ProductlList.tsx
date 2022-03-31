@@ -42,7 +42,7 @@ function ProductList() {
                 <Style.CheckBox>
                   <input
                     type={"checkbox"}
-                    className={".delete-checkbox"}
+                    className={"delete-checkbox"}
                     id={`checkbox${product.ID}`}
                     onChange={(e: any) => {
                       dispatch(deleteProduct(product.ID));

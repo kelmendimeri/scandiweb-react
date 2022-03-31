@@ -1,9 +1,12 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../../../../services/productSlice";
+import { useFormContext } from "react-hook-form";
+import { Product } from "../../../../services/Product.model";
 
 function Furniture() {
-  const dispatch = useDispatch();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<Product>();
   return (
     <>
       <div className="form-group row mb-2">
@@ -13,17 +16,13 @@ function Furniture() {
         <div className="col-sm-6">
           <input
             type="number"
-            step={0.1}
-            min={0.1}
-            name="Height"
             className="form-control"
             id="height"
-            placeholder="Height"
-            required
-            onChange={(e: any) => {
-              dispatch(addProduct({ [e.target.name]: e.target.value }));
-            }}
+            step={0.1}
+            min={0.1}
+            {...register("Height", { required: true })}
           />
+          {errors.Height && <p id="error-input">Height is required</p>}
         </div>
       </div>
       <div className="form-group row mb-2">
@@ -33,17 +32,13 @@ function Furniture() {
         <div className="col-sm-6">
           <input
             type="number"
-            step={0.1}
-            min={0.1}
-            name="Width"
             className="form-control"
             id="width"
-            placeholder="Width"
-            required
-            onChange={(e: any) => {
-              dispatch(addProduct({ [e.target.name]: e.target.value }));
-            }}
+            step={0.01}
+            min={0.01}
+            {...register("Width", { required: true })}
           />
+          {errors.Width && <p id="error-input">Height is required</p>}
         </div>
       </div>
       <div className="form-group row mb-2">
@@ -53,17 +48,13 @@ function Furniture() {
         <div className="col-sm-6">
           <input
             type="number"
-            step={0.1}
-            min={0.1}
-            name="Length"
             className="form-control"
             id="length"
-            placeholder="Length"
-            required
-            onChange={(e: any) => {
-              dispatch(addProduct({ [e.target.name]: e.target.value }));
-            }}
+            step={0.1}
+            min={0.1}
+            {...register("Length", { required: true })}
           />
+          {errors.Length && <p id="error-input">Length is required</p>}
         </div>
       </div>
     </>

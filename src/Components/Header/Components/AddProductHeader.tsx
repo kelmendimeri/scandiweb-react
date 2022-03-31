@@ -1,32 +1,17 @@
 import axios from "axios";
 import * as React from "react";
-import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { fetchProduct, productSelector } from "../../../services/productSlice";
-
+import { Product } from "../../../services/Product.model";
 import Button from "./Button";
 
 function AddProductList() {
-  const { addCateogry } = useSelector(productSelector);
-  const { addProduct } = useSelector(productSelector);
-  const navigate = useNavigate();
-  function postProduct(data: any[]) {
-    axios({
-      method: "POST",
-      url: `http://localhost:8080/scandiwebPHP/insert/${addCateogry}.php`,
-      data: data,
-    });
-  }
+  const method = useForm<Product>();
+
   return (
     <Style.Container id={"addproductheaders"}>
-      <Button
-        form={"product_form"}
-        title="Save"
-        onClick={(e: any) => {
-          postProduct(addProduct);
-        }}
-      />
+      <Button form={"product_form"} title="Save" />
 
       <Link to={"/"}>
         <Button title="Cancel" />

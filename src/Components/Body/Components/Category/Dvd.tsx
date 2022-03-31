@@ -1,9 +1,14 @@
 import * as React from "react";
+import { useFormContext } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../../../services/productSlice";
+import { Product } from "../../../../services/Product.model";
 
 function Dvd() {
   const dispatch = useDispatch();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<Product>();
   return (
     <>
       <div className="form-group row mb-2">
@@ -13,17 +18,13 @@ function Dvd() {
         <div className="col-sm-6">
           <input
             type="number"
-            step={0.1}
-            min={0.1}
-            name="Size"
             className="form-control"
             id="size"
-            placeholder="Size"
-            required
-            onChange={(e: any) => {
-              dispatch(addProduct({ [e.target.name]: e.target.value }));
-            }}
+            step={0.1}
+            min={0.1}
+            {...register("Size", { required: true })}
           />
+          {errors.Size && <p id="error-input">Size is required</p>}
         </div>
       </div>
     </>

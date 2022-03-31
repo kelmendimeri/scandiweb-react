@@ -3,11 +3,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {
-  api,
-  fetchProduct,
-  productSelector,
-} from "../../../services/productSlice";
+import { fetchProduct, productSelector } from "../../../services/productSlice";
 import Button from "./Button";
 
 function ProductListHeader() {
@@ -19,16 +15,24 @@ function ProductListHeader() {
     });
   const navigate = useNavigate();
   function removeProduct(idx: number) {
-    axios({
-      url: `http://localhost:8080/scandiwebPHP/delete/MassDelete.php`,
-      method: "DELETE",
-      data: { id: idx },
-    }).then(() => {
-      fetchProduct();
-      navigate("/");
-      return true;
-    });
+    fetch(
+      `https://juniortest-kelmend-imeri.000webhostapp.com/scandiwebPHP/delete/MassDelete.php`,
+      {
+        method: "post",
+        body: JSON.stringify({ id: idx }),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
+    )
+      .then((res) => {
+        res.status === 200 && fetchProduct();
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }
+
   return (
     <Style.Container id={"addproductheaders"}>
       <Link to={"/add-product"}>

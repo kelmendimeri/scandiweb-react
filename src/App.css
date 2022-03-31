@@ -2,3 +2,7 @@
   font-family: "Arial";
   font-size: "14px";
 }
+
+#error-input {
+  color: red;
+}
