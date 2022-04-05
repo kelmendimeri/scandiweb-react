@@ -1,13 +1,16 @@
-import axios from "axios";
 import React, { Suspense, useState } from "react";
 import loadable from "@loadable/component";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FormProvider, useForm } from "react-hook-form";
 import { Product } from "../../../services/Product.model";
 import { useNavigate } from "react-router-dom";
+import { productSelector } from "../../../services/productSlice";
+import { Console } from "console";
 
 function AddProduct() {
   const dispatch = useDispatch();
+  const [duplicateError, setDuplicateError] = useState(false);
+  const { products } = useSelector(productSelector);
   const method = useForm<Product>();
   const [myComp, setMyComp] = useState("");
   const components = {
@@ -20,24 +23,24 @@ function AddProduct() {
   );
   const navigate = useNavigate();
   function onsubmit(data: any) {
-    fetch(
-      `https://juniortest-kelmend-imeri.000webhostapp.com/scandiwebPHP/insert/${myComp}.php`,
-      {
-        method: "POST",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify(data),
-      }
-    )
-      .then((res: any) => {
-        res.status === 200 && navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    let duplicate = products.filter((product: any) => product.SKU === data.SKU);
+    duplicate.length < 1
+      ? fetch(`http://localhost:8080/scandiwebPHP/Products/${myComp}.php`, {
+          method: "POST",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify(data),
+        })
+          .then(() => {
+            setDuplicateError(false);
+            navigate("/");
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          })
+      : setDuplicateError(true);
   }
-
   return (
     <FormProvider {...method}>
       <form
@@ -55,8 +58,13 @@ function AddProduct() {
               type="text"
               className="form-control"
               id="sku"
-              {...method.register("SKU", { required: true })}
+              {...method.register("SKU", {
+                required: true,
+              })}
             />
+            {duplicateError && (
+              <p id="error-input">SKU exist in database, please rename it</p>
+            )}
             {method.formState.errors.SKU && (
               <p id="error-input">SKU is required</p>
             )}

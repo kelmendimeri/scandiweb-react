@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import {
   deleteProduct,
   fetchProduct,
@@ -17,7 +17,6 @@ function ProductList() {
   }, [dispatch]);
 
   const { loading, error, products } = useSelector(productSelector);
-  console.log(products);
   return (
     <Style.Container id="ProductList">
       <Style.Items>
@@ -81,7 +80,7 @@ function ProductList() {
   );
 }
 
-export default ProductList;
+export default React.memo(ProductList);
 
 const Style = {
   Container: styled.div`

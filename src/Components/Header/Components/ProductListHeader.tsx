@@ -15,16 +15,13 @@ function ProductListHeader() {
     });
   const navigate = useNavigate();
   function removeProduct(idx: number) {
-    fetch(
-      `https://juniortest-kelmend-imeri.000webhostapp.com/scandiwebPHP/delete/MassDelete.php`,
-      {
-        method: "post",
-        body: JSON.stringify({ id: idx }),
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
-    )
+    fetch("http://localhost:8080/scandiwebPHP/Products/Product_CRUD.php", {
+      method: "DELETE",
+      body: JSON.stringify({ id: idx }),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
       .then((res) => {
         res.status === 200 && fetchProduct();
       })

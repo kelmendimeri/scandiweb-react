@@ -1,6 +1,6 @@
 <?php
 
-abstract class Products
+abstract class AbsProducts
 {
   protected $SKU, $Name, $Price;
 
