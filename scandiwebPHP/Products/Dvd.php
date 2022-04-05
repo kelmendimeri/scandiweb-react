@@ -1,6 +1,6 @@
 <?php
 
-include "./Product_CRUD.php";
+include "./Product.php";
 include "../config/config.php";
 
 class DVD
@@ -26,7 +26,7 @@ class DVD
     {
         $conn = new Config();
         $db = $conn->connect();
-        $product = new Product_CRUD();
+        $product = new Product();
 
         $formdata = json_decode(file_get_contents('php://input'), true);
         if (isset($formdata)) {

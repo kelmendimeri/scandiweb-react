@@ -1,6 +1,6 @@
 <?php
 
-include "./Product_CRUD.php";
+include "./Product.php";
 include "../config/config.php";
 
 class Furniture
@@ -57,7 +57,7 @@ class Furniture
 
     public function insertFurniture()
     {
-        $product = new Product_CRUD();
+        $product = new Product();
         $conn = new Config();
         $db = $conn->connect();
 

@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include '../AbsProducts.php';
 
-class Product_CRUD extends AbsProducts
+class Product extends AbsProducts
 {
 
     protected $SKU;

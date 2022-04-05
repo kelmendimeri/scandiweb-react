@@ -1,6 +1,6 @@
 <?php
 
-include "./Product_CRUD.php";
+include "./Product.php";
 include "../config/config.php";
 
 class Book
@@ -25,7 +25,7 @@ class Book
     public function insertBook()
     {
 
-        $product = new Product_CRUD();
+        $product = new Product();
         $conn = new Config();
         $db = $conn->connect();
         $formdata = json_decode(file_get_contents('php://input'), true);
