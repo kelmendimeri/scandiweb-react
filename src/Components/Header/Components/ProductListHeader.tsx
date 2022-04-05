@@ -15,7 +15,7 @@ function ProductListHeader() {
     });
   const navigate = useNavigate();
   function removeProduct(idx: number) {
-    fetch("http://localhost:8080/scandiwebPHP/Products/Product_CRUD.php", {
+    fetch("http://localhost:8080/scandiwebPHP/Products/CRUD.php", {
       method: "DELETE",
       body: JSON.stringify({ id: idx }),
       headers: {
@@ -44,6 +44,7 @@ function ProductListHeader() {
                 window.location.reload();
               })
             : alert("Check an prdouct item before clicking delete button");
+
           fetchProduct();
         }}
       />

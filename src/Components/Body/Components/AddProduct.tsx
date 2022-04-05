@@ -25,7 +25,7 @@ function AddProduct() {
   function onsubmit(data: any) {
     let duplicate = products.filter((product: any) => product.SKU === data.SKU);
     duplicate.length < 1
-      ? fetch(`http://localhost:8080/scandiwebPHP/Products/${myComp}.php`, {
+      ? fetch(`http://localhost:8080/scandiwebPHP/Products/CRUD.php`, {
           method: "POST",
           headers: {
             "Access-Control-Allow-Origin": "*",

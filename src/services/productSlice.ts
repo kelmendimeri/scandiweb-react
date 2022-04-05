@@ -78,7 +78,7 @@ export const api = axios.create({
 export function fetchProduct() {
   return async (dispatch: any) => {
     await api
-      .get("api.php", {
+      .get("Products/CRUD.php", {
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
